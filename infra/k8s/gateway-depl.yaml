@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: neverfood-gateway
+  labels:
+    app: neverfood-gateway
+    
+spec:
+  selector:
+    matchLabels:
+      app: neverfood-gateway
+  template:
+    metadata:
+      labels:
+        app: neverfood
+    spec:
+      containers:
+        - name: neverfood-gateway
+          image: fshahy/neverfood_gateway
+          ports:
+            - containerPort: 3001

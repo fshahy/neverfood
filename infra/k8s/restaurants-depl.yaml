@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: neverfood-restaurants
+  labels:
+    app: neverfood-restaurants
+    
+spec:
+  selector:
+    matchLabels:
+      app: neverfood-restaurants
+  template:
+    metadata:
+      labels:
+        app: neverfood
+    spec:
+      containers:
+        - name: neverfood-restaurants
+          image: fshahy/neverfood_restaurants
+          ports:
+            - containerPort: 3004

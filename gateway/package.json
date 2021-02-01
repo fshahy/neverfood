@@ -1,0 +1,30 @@
+{
+    "name": "gateway",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon src/index.js",
+        "test": "jest --watchAll --no-cache"
+    },
+    "jest": {
+        "preset": "ts-jest",
+        "testEnvironment": "node",
+        "setupFilesAfterEnv": [
+            "./src/test/setup.ts"
+        ]
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express-gateway": "^1.16.10"
+    },
+    "devDependencies": {
+        "@types/jest": "^26.0.20",
+        "@types/supertest": "^2.0.10",
+        "jest": "^26.6.3",
+        "supertest": "^6.1.3",
+        "ts-jest": "^26.5.0"
+    }
+}

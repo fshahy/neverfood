@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: neverfood-ui
+  labels:
+    app: neverfood-ui
+    
+spec:
+  selector:
+    matchLabels:
+      app: neverfood-ui
+  template:
+    metadata:
+      labels:
+        app: neverfood
+    spec:
+      containers:
+        - name: neverfood-ui
+          image: fshahy/neverfood_ui
+          ports:
+            - containerPort: 8000

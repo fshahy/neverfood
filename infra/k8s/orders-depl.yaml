@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: neverfood-orders
+  labels:
+    app: neverfood-orders
+    
+spec:
+  selector:
+    matchLabels:
+      app: neverfood-orders
+  template:
+    metadata:
+      labels:
+        app: neverfood
+    spec:
+      containers:
+        - name: neverfood-orders
+          image: fshahy/neverfood_orders
+          ports:
+            - containerPort: 3002

@@ -1,0 +1,60 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/deployment*
+
+build:
+  local:
+    push: false
+  artifacts:
+    - image: fshahy/neverfood_auth
+      context: ./auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.ts'
+            dest: .
+    - image: fshahy/neverfood_emails
+      context: ./emails
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.ts'
+            dest: .
+    - image: fshahy/neverfood_gateway
+      context: ./gateway
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.ts'
+            dest: .
+    - image: fshahy/neverfood_orders
+      context: ./orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.ts'
+            dest: .
+    - image: fshahy/neverfood_payments
+      context: ./payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.ts'
+            dest: .
+    - image: fshahy/neverfood_restaurants
+      context: ./restaurants
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.ts'
+            dest: .

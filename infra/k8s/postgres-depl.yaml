@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neverfood-postgres-config
+  labels:
+    app: neverfood-postgres
+data:
+  POSTGRES_DB: neverfood
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: neverfood-postgres-pv-volume
+  labels:
+    app: neverfood-postgres
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: neverfood-postgres-pv-claim
+  labels:
+    app: neverfood-postgres
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: neverfood-postgres
+  labels:
+    app: neverfood-postgres
+    
+spec:
+  selector:
+    matchLabels:
+      app: neverfood-postgres
+  template:
+    metadata:
+      labels:
+        app: neverfood-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:13.1
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: neverfood-postgres-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: neverfood-postgres-pv-claim

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: neverfood-nats
+  labels:
+    app: neverfood-nats
+    
+spec:
+  selector:
+    matchLabels:
+      app: neverfood-nats
+  template:
+    metadata:
+      labels:
+        app: neverfood
+    spec:
+      containers:
+        - name: nats
+          image: nats-streaming:0.20
+          ports:
+            - containerPort: 4222
