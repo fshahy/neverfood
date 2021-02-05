@@ -3,11 +3,11 @@ import { logger } from './logger';
 import { createConnection } from 'typeorm';
 import { validate } from 'class-validator';
 import express from 'express';
-import { User } from './entity/User';
+import { User } from './entity/user';
 
 createConnection()
     .then(async (connection) => {
-        logger.info('Successfully Connected to PostgreSQL database.');
+        logger.info('Successfully Connected to PostgreSQL database: neverfood_usersdb');
 
         const user = new User();
         user.name = 'Farid Shahy';
