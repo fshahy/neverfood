@@ -4,7 +4,7 @@
     "port": 5432,
     "username": "farid",
     "password": "farid",
-    "database": "neverfood_restaurants",
+    "database": "neverfood_restaurantsdb",
     "synchronize": true,
     "logging": false,
     "entities": [
