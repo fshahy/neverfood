@@ -1,0 +1,54 @@
+http:
+  port: 8080
+apiEndpoints:
+  restaurant:
+    host: localhost
+    paths:
+      - '/cities'
+      - '/cities/*'
+      - '/foods'
+      - '/foods/*'
+  user:
+    host: localhost
+    paths:
+      - '/users'
+      - '/users/*'
+  order:
+    host: localhost
+    paths:
+      - '/orders'
+      - '/orders/*'
+serviceEndpoints:
+  userService:
+    url: 'http://localhost:3001'
+  orderService:
+    url: 'http://localhost:3002'
+  restaurantService:
+    url: 'http://localhost:3004'
+policies:
+  - proxy
+pipelines:
+  restaurantPipeline:
+    apiEndpoints:
+      - restaurant
+    policies:
+      - proxy:
+        - action:
+            serviceEndpoint: restaurantService
+            changeOrigin: true
+  userPipeline:
+    apiEndpoints:
+      - user
+    policies:
+      - proxy:
+        - action:
+            serviceEndpoint: userService
+            changeOrigin: true
+  orderPipeline:
+    apiEndpoints:
+      - order
+    policies:
+      - proxy:
+        - action:
+            serviceEndpoint: orderService
+            changeOrigin: true
