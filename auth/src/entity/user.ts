@@ -3,19 +3,19 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    @IsNotEmpty()
-    name: string;
+  @Column()
+  @IsNotEmpty()
+  name: string;
 
-    @Column()
-    @IsNotEmpty()
-    username: string;
+  @Column()
+  @IsNotEmpty()
+  username: string;
 
-    @Column()
-    @MinLength(8)
-    @IsNotEmpty()
-    password: string;
+  @Column()
+  @MinLength(8)
+  @IsNotEmpty()
+  password: string;
 }
