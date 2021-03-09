@@ -6,17 +6,17 @@ import { Menu } from './menu.entity';
 
 @Entity()
 export class Restaurant {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    @IsNotEmpty()
-    name: string;
+  @Column()
+  @IsNotEmpty()
+  name: string;
 
-    @ManyToOne(() => City, city => city.restaurants)
-    city: City;
+  @ManyToOne(() => City, city => city.restaurants)
+  city: City;
 
-    @OneToOne(() => Menu)
-    @JoinColumn()
-    menu: Menu;
+  @OneToOne(() => Menu)
+  @JoinColumn()
+  menu: Menu;
 }

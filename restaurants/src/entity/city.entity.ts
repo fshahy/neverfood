@@ -4,13 +4,13 @@ import { Restaurant } from './restaurant.entity';
 
 @Entity()
 export class City {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    @IsNotEmpty()
-    name: string;
+  @Column()
+  @IsNotEmpty()
+  name: string;
 
-    @OneToMany(() => Restaurant, restaurant => restaurant.city)
-    restaurants: Restaurant[];
+  @OneToMany(() => Restaurant, restaurant => restaurant.city)
+  restaurants: Restaurant[];
 }

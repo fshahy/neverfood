@@ -1,19 +1,19 @@
 import 'reflect-metadata';
 import { logger } from './logger';
 import { createConnection } from 'typeorm';
-import express, { json } from 'express';
+import express from 'express';
 import { citiesRouter } from './routes/cities';
 import { foodsRouter } from './routes/foods';
 import { restaurantsRouter } from './routes/restaurants';
 import { errorHandler } from './middleware/error-handler';
 
-export const app = express();
+const app = express();
 
 createConnection().then(async (connection) => {
   logger.info('Successfully Connected to PostgreSQL database: neverfood_restaurantsdb');
 
   // middleware
-  app.use(json());
+  app.use(express.json());
 
   // routes
   app.use('/cities', citiesRouter);

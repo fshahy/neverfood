@@ -4,13 +4,13 @@ import { MenuItem } from './menuitem.entity';
 
 @Entity()
 export class Food {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    @IsNotEmpty()
-    name: string;
+  @Column()
+  @IsNotEmpty()
+  name: string;
 
-    @OneToMany(() => MenuItem, item => item.food)
-    items: MenuItem[];
+  @OneToMany(() => MenuItem, item => item.food)
+  items: MenuItem[];
 }

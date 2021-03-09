@@ -4,9 +4,9 @@ import { MenuItem } from './menuitem.entity';
 
 @Entity()
 export class Menu {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @OneToMany(() => MenuItem, item => item.menu)
-    items: MenuItem[];
+  @OneToMany(() => MenuItem, item => item.menu)
+  items: MenuItem[];
 }

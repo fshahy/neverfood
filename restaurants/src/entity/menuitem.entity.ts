@@ -5,17 +5,17 @@ import { Menu } from './menu.entity';
 
 @Entity()
 export class MenuItem {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(() => Menu, menu => menu.items)
-    menu: Menu;
+  @ManyToOne(() => Menu, menu => menu.items)
+  menu: Menu;
 
-    @ManyToOne(() => Food, food => food.items)
-    food: Food;
+  @ManyToOne(() => Food, food => food.items)
+  food: Food;
 
-    @Column()
-    @IsNotEmpty()
-    @IsNumber()
-    price: number;
+  @Column()
+  @IsNotEmpty()
+  @IsNumber()
+  price: number;
 }
